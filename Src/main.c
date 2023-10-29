@@ -40,7 +40,7 @@ void ReadIOCommandCallback(char port, int16_t io) {
     else
         printf("Params are: GPIO Port %c and GPIO Pin %d\r\n", port, io);
 
-    printf("I/O State: %s\r\n", result ? "SET" : "RESET");
+    printf("I/O State: %s\r", result ? "SET" : "RESET");
 }
 
 void WriteIOCommandCallback(char port, int16_t io, int16_t value) {

@@ -149,9 +149,9 @@ static eCommandResult_T ConsoleCommandToggleIO(const char buffer[]) {
             break;
 
         // making sure i/o doesn't exceed 15 and port is between 'a' and 'h'
-        if((io <= 15) && (port >= 97 && port <= 104)) {
+        if((io > 0 && io <= 15) && (port >= 97 && port <= 104)) {
             ToggleIOCommandCallback(port, io);
-            ConsoleIoSendString(STR_ENDLINE); // TODO: send VT100 code to clear terminal of previous command?
+            ConsoleIoSendString(STR_ENDLINE);
         } else {
             result = COMMAND_PARAMETER_ERROR;
         }
@@ -175,9 +175,9 @@ static eCommandResult_T ConsoleCommandReadIO(const char buffer[]) {
             break;
 
         // making sure i/o doesn't exceed 15 and port is between 'a' and 'h'
-        if((io <= 15) && (port >= 97 && port <= 104)) {
+        if((io > 0 && io <= 15) && (port >= 97 && port <= 104)) {
             ReadIOCommandCallback(port, io);
-            ConsoleIoSendString(STR_ENDLINE); // TODO: send VT100 code to clear terminal of previous command?
+            ConsoleIoSendString(STR_ENDLINE);
         } else {
             result = COMMAND_PARAMETER_ERROR;
         }
@@ -204,9 +204,9 @@ static eCommandResult_T ConsoleCommandWriteIO(const char buffer[]) {
             break;
 
         // making sure i/o doesn't exceed 15 and port is between 'a' and 'h'
-        if((io <= 15) && (port >= 97 && port <= 104) && (value == 0 || value == 1)) {
+        if((io > 0 && io <= 15) && (port >= 97 && port <= 104) && (value == 0 || value == 1)) {
             WriteIOCommandCallback(port, io, value);
-            ConsoleIoSendString(STR_ENDLINE); // TODO: send VT100 code to clear terminal of previous command?
+            ConsoleIoSendString(STR_ENDLINE);
         } else {
             result = COMMAND_PARAMETER_ERROR;
         }
