@@ -6,6 +6,8 @@ Port of Elecia White's [reusable](https://github.com/eleciawhite/reusable/) libr
 
 This port uses NUCLEO-F439ZI board and one of its UARTs connected to the Virtual COM port. No additional hardware is necessary (apart from a micro USB cable to connect the board to the computer).
 
+Use your preferred serial terminal software with the following settings: 115200 baud, 8N1, no flow.
+
 > Note: In this project, the `Src/retarget.c` contains redefinitions of standard I/O functions to use UART. However, the reusable library port uses API calls from ST's HAL for data reception, instead of a built-in C functions such as `scanf()`.
 
 Build instructions for the project can be found from the section  *Prerequisites* and beyond. 
@@ -28,7 +30,7 @@ Three custom commands have been implemented in the `Src/reusable/consoleCommands
 - `ConsoleCommandReadIO`  : will read the current state of the GPIO pin
 - `ConsoleCommandWriteIO` : will set the value of a given GPIO pin
 
-In order to avoid tightly coupling any HAL API calls to the reusable library code itself, within each `ConsoleCommandXXX` function, a weakly defined callback function mechanism is employed. 
+In order to avoid tightly coupling any HAL API calls to the reusable library code itself, within each `ConsoleCommandXXX` function, a weakly defined call-back function mechanism is employed. 
 
 For example, `ConsoleCommandToggleIO` function will parse the command and parameters supplied, makes sure the supplied command syntax is correct and finally calls the `ToggleIOCommandCallback(port, io)` call-back function with the relevant parameters.
 
