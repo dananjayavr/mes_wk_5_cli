@@ -1,5 +1,7 @@
 ### Introduction
 
+![https://i.imgur.com/s890fmz.png]()
+
 Port of Elecia White's [reusable](https://github.com/eleciawhite/reusable/) library to STM32F439ZI MCU. 
 
 This port uses NUCLEO-F439ZI board and one of its UARTs connected to the Virtual COM port. No additional hardware is necessary (apart from a micro USB cable to connect the board to the computer).
