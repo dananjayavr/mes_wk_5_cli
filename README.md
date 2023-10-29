@@ -30,6 +30,14 @@ Three custom commands have been implemented in the `Src/reusable/consoleCommands
 - `ConsoleCommandReadIO`  : will read the current state of the GPIO pin
 - `ConsoleCommandWriteIO` : will set the value of a given GPIO pin
 
+These commands will map to following syntax (for example) :
+
+- `tio b 7` (`tio` = toggle io, `b` = GPIO port B, `7` = GPIO pin 7)
+- `rio b 7` (`rio` = read io, `b` = GPIO port B, `7` = GPIO pin 7)
+- `wio b 7 1` (`wio` = write io, `b` = GPIO port B, `7` = GPIO pin 7, `1` = GPIO_PIN_SET)
+
+> Note: Current implementation is programmed to control the onboard LEDs (LD2 and LD3).
+
 In order to avoid tightly coupling any HAL API calls to the reusable library code itself, within each `ConsoleCommandXXX` function, a weakly defined call-back function mechanism is employed. 
 
 For example, `ConsoleCommandToggleIO` function will parse the command and parameters supplied, makes sure the supplied command syntax is correct and finally calls the `ToggleIOCommandCallback(port, io)` call-back function with the relevant parameters.
