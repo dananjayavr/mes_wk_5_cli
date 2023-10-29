@@ -136,6 +136,7 @@ static eCommandResult_T ConsoleCommandVer(const char buffer[])
 	return result;
 }
 
+//TODO: following three commands process the data in a very similar way. refactor to avoid code repetition.
 static eCommandResult_T ConsoleCommandToggleIO(const char buffer[]) {
     char port;
     int16_t io;
