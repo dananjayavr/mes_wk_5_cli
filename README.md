@@ -28,9 +28,13 @@ Three custom commands have been implemented in the `Src/reusable/consoleCommands
 
 In order to avoid tightly coupling any HAL API calls to the reusable library code itself, within each `ConsoleCommandXXX` function, a weakly defined callback function mechanism is employed. 
 
-For example, `ConsoleCommandToggleIO` function will parse the command and parameters supplied, makes sure the supplied command syntax is correct and finally calls the call-back function with the relevant parameters.
+For example, `ConsoleCommandToggleIO` function will parse the command and parameters supplied, makes sure the supplied command syntax is correct and finally calls the `ToggleIOCommandCallback(port, io)` call-back function with the relevant parameters.
 
 The call-back functions are defined in `Src/main.c` file. 
+
+#### Modifications to the library code
+
+Apart from the `Src/reusable/consoleIo.c` and `Src/reusable/consoleCommands.c` files which must be modified to port the library and add custom commands, a slight modification is made to the `Src/reusable/console.c` file. I have implemented the `ConsoleReceiveParamChar` function, to receive a single `uint8_t` byte as a command parameter.  
 
 #### Improvements
 
