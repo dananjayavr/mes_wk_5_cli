@@ -32,7 +32,7 @@ In order to avoid tightly coupling any HAL API calls to the reusable library cod
 
 For example, `ConsoleCommandToggleIO` function will parse the command and parameters supplied, makes sure the supplied command syntax is correct and finally calls the `ToggleIOCommandCallback(port, io)` call-back function with the relevant parameters.
 
-The call-back functions are defined in `Src/main.c` file. 
+The call-back functions are implemented in `Src/main.c` file. 
 
 #### Modifications to the library code
 
