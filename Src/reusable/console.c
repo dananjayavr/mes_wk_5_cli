@@ -289,6 +289,24 @@ eCommandResult_T ConsoleReceiveParamHexUint16(const char * buffer, const uint8_t
 	return result;
 }
 
+// ConsoleReceiveParamHexUint16
+// Identify and obtain a parameter of type char, sent in as character.
+eCommandResult_T ConsoleReceiveParamChar(const char * buffer, const uint8_t parameterNumber, char *parameterChar)
+{
+    uint32_t startIndex = 0;
+    eCommandResult_T result;
+    char tmpChar;
+
+    result = ConsoleParamFindN(buffer, parameterNumber, &startIndex);
+    if ( COMMAND_SUCCESS == result )
+    {
+        // bufferIndex points to start of integer
+        tmpChar = buffer[startIndex + 0];
+        *parameterChar = tmpChar;
+    }
+    return result;
+}
+
 // ConsoleSendParamHexUint16
 // Send a parameter of type uint16 as hex.
 // This does not use a library function to do it (though you could

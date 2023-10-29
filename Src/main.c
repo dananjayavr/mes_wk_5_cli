@@ -16,6 +16,44 @@ static void MX_GPIO_Init(void);
 static void MX_USART3_UART_Init(void);
 void ledTask(void);
 
+// LD1 = Port B Pin 0
+// LD2 = Port B Pin 7
+// LD3 = Port B Pin 14
+
+void ToggleIOCommandCallback(char port, int16_t io) {
+
+    if((port == 98) && (io == 7))
+        HAL_GPIO_TogglePin(LD2_GPIO_Port,LD2_Pin);
+    else if((port == 98) && (io == 14))
+        HAL_GPIO_TogglePin(LD3_GPIO_Port,LD3_Pin);
+    else
+        printf("Params are: GPIO Port %c and GPIO Pin %d\r\n", port, io);
+}
+
+void ReadIOCommandCallback(char port, int16_t io) {
+    GPIO_PinState result = 0;
+
+    if((port == 98) && (io == 7))
+        result = HAL_GPIO_ReadPin(LD2_GPIO_Port,LD2_Pin);
+    else if((port == 98) && (io == 14))
+        result = HAL_GPIO_ReadPin(LD3_GPIO_Port,LD3_Pin);
+    else
+        printf("Params are: GPIO Port %c and GPIO Pin %d\r\n", port, io);
+
+    printf("I/O State: %s\r\n", result ? "SET" : "RESET");
+}
+
+void WriteIOCommandCallback(char port, int16_t io, int16_t value) {
+    uint16_t write_value = value ? GPIO_PIN_SET : GPIO_PIN_RESET;
+
+    if((port == 98) && (io == 7))
+        HAL_GPIO_WritePin(LD2_GPIO_Port,LD2_Pin, write_value);
+    else if((port == 98) && (io == 14))
+        HAL_GPIO_WritePin(LD3_GPIO_Port,LD3_Pin, write_value);
+    else
+        printf("Params are: GPIO Port %c and GPIO Pin %d, set to %d\r\n", port, io, value);
+}
+
 /**
   * @brief  The application entry point.
   * @retval int
