@@ -1,5 +1,3 @@
-[TOC]
-
 ### Introduction
 
 Port of Elecia White's [reusable](https://github.com/eleciawhite/reusable/) library to STM32F439ZI MCU. 
